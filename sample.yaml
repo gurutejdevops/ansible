@@ -1,0 +1,15 @@
+- name: Sample Playbook
+  hosts: all
+  vars:
+    URL: www.google.com
+  tasks:
+    - name: Print the Global URL
+      ansible.builtin.debug:
+        msg: Print the global URL is {{URL}}
+
+    - name: Printing the Local URL
+      vars:
+        URL: HELLO.COM
+      ansible.builtin.debug:
+        msg: Print the Local URL is {{URL}}
+
