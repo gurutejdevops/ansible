@@ -1,5 +1,6 @@
 - name: Play1
   hosts: all
+  gather_facts: no
   vars:
     URL: www.google.com
   vars_files:
