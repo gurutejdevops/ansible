@@ -1,0 +1,15 @@
+- name: Play1
+  hosts: all
+  vars:
+    URL: www.google.com
+
+  tasks:
+    - name: First task to print global variable
+      ansible.builtin.debug:
+        msg: The global variable is {{URL}}
+    
+    - name: Defining local variable
+      vars:
+        URL: www.localgoogle.com
+      ansible.builtin.debug:
+        msg: The local variable is {{URL}}
