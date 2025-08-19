@@ -13,3 +13,7 @@
         URL: www.localgoogle.com
       ansible.builtin.debug:
         msg: The local variable is {{URL}}
+      
+    - name: The variable is NAME
+      ansible.builtin.debug:
+        msg: The value of name is {{NAME}}
