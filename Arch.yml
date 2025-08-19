@@ -2,6 +2,9 @@
   hosts: all
   vars:
     URL: www.google.com
+  vars_prompt:
+    - name: URNAME
+      prompt: Enter your name
 
   tasks:
     - name: First task to print global variable
@@ -14,6 +17,6 @@
       ansible.builtin.debug:
         msg: The local variable is {{URL}}
       
-   # - name: The variable is NAME
-   #  ansible.builtin.debug:
-   #     msg: The value of name is {{NAME}}
+    - name: Printing the prompt value
+      ansible.builtin.debug:
+       msg: The name is {{URNAME}}
