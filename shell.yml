@@ -4,3 +4,10 @@
   tasks:
     - name: Running uptime command
       ansible.builtin.shell: uptime
+      register: OUT
+
+      #register is the keyword the output of uptime command will be stored in the OUT
+
+    - name: To print the uptime
+      ansible.builtin.debug:
+        msg: The uptime is {{OUT}}
