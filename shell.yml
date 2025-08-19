@@ -13,7 +13,7 @@
         msg:  "{{OUT.stdout}}"
 
     - name: declare a variable
-      set_fact:
+      ansible.builtin.set_fact:
         EXITCODE: "{{OUT.rc}}"
 
     - name: To print the uptime exitcode
