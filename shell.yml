@@ -3,5 +3,4 @@
 
   tasks:
     - name: Running uptime command
-      ansible.builtin.shell: 
-       uptime
+      ansible.builtin.shell: uptime
