@@ -4,4 +4,4 @@
   tasks:
     - name: Printing default variable
       ansible.builtin.debug:
-        msg: The default variable value is "{{ansible_distribution}}"
+        msg: The default variable value is "{{ansible_default_ipv4.macaddress}}"
