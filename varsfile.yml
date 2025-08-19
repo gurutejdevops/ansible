@@ -1,0 +1,15 @@
+- name: Play1
+  hosts: all
+  vars:
+    URL: www.google.com
+  vars_file:
+    - dev.yml
+  
+  tasks:
+    - name: To print the global variable
+      ansible.builtin.debug:
+        msg: The value of global variable is {{URL}}
+    
+    - name: To print Instance type from the dev.yml file
+      ansible.builtin.debug:
+        msg: The instance type is {{INS_TYPE}}
