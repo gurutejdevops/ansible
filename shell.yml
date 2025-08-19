@@ -13,12 +13,12 @@
         msg:  "{{OUT.stdout}}"
 
     - name: declare a variable
-      ansible.builtin.set_fact:
+      set_fact:
         EXITCODE: "{{OUT.rc}}"
 
     - name: To print the uptime exitcode
       ansible.builtin.debug:
-        msg:  uptime exit code is "{{EXITCOE}}"
+        msg: uptime exit code is "{{EXITCOE}}"
 
 
       
