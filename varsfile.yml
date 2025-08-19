@@ -2,7 +2,7 @@
   hosts: all
   vars:
     URL: www.google.com
-  vars_file:
+  vars_files:
     - dev.yml
   
   tasks:
