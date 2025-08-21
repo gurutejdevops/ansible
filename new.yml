@@ -33,3 +33,7 @@
     - name: Task5
       ansible.builtin.debug:
         msg: The task5 value from dev.yaml file {{INS_TYPE1}}
+    
+    - name: Task6
+      ansible.builtin.debug:
+        msg: The fact data is {{ansible_distribution}}
