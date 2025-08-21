@@ -5,13 +5,13 @@
 
   tasks:
    - name: Run this when the distribution is centos
-     action: debug msg={{ansible_distribution}}
+     action: debug msg="{{ansible_distribution}}"
      when: ansible_distribution == "CentOS"
    
    - name: Run this when the distribution is Ubuntu
-     action: debug msg={{ansible_distribution}}
+     action: debug msg="{{ansible_distribution}}"
      when: ansible_distribution == "Ubuntu"
     
    - name: run this action if the action is guru
-     action: debug msg=Action is guru
+     action: debug msg="Action is guru"
      when: action == "guru"
