@@ -5,7 +5,8 @@
     - name: The id details
       #ansible.builtin.shell: id
       #register: OUT
-      action: shell register="OUT"
+      action: shell id 
+      register: OUT
     
     - name: To print the id
       action: debug msg="{{OUT}}"
