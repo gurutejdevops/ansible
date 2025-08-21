@@ -16,4 +16,4 @@
 
     - name: Task3
       ansible.builtin.debug:
-        msg: The task2 value at run time {{NAME}}
+        msg: The task2 value at run time {{URL}}
