@@ -6,7 +6,7 @@
   vars_prompt:
     - name: URNAME
       prompt: Enter ur name
-      private: true
+      private: false
 
   tasks:
     - name: Task1
