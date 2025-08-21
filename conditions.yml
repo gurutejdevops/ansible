@@ -14,7 +14,7 @@
       msg: welcome to Ubunty {{ansible_distribution}}
      when: ansible_distribution == "Ubuntu"
     
-   - name: run this action if the action is true
+   - name: run this action if the action is guru
      ansible.builtin.debug:
-      msg: Action is true
+      msg: Action is guru
      when: action == "guru"
