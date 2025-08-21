@@ -53,3 +53,11 @@
     - name: To print the stdout of uptime
       ansible.builtin.debug:
         msg: The print the stdout of uptime {{OUT.stdout}}
+
+    - name: declare a variable
+      ansible.builtin.set_fact:
+        EXITCODE: {{OUT.rc}}
+
+    - name: Tp print the exit code of uptime
+      ansible.builtin.debug:
+        msg: {{EXITCODE}}
