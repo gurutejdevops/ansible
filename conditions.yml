@@ -1,5 +1,7 @@
 - name: Play1
   hosts: all
+  vars:
+    action: true
 
   tasks:
    - name: Run this when the distribution is centos
@@ -11,3 +13,8 @@
      ansible.builtin.debug:
       msg: welcome to Ubunty {{ansible_distribution}}
      when: ansible_distribution == "Ubuntu"
+    
+   - name: run this action if the action is true
+     ansible.builtin.debug:
+      msg: Action is true
+     when: action
