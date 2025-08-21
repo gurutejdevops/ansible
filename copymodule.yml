@@ -4,5 +4,6 @@
   tasks:
    - name: copy the files from ansible server to remote servers
      ansible.builtin.copy:
-      dest: /home/centos/hello.txt
-      content: "Hello Guru, New file from VS"
+      src: important.yml
+      dest: /home/centos/
+      
