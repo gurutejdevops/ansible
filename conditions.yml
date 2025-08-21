@@ -1,0 +1,13 @@
+- name: Play1
+  hosts: all
+
+  tasks:
+   - name: Run this when the distribution is centos
+     ansible.builtin.debug:
+      msg: Welcome to Centos {{ansible_distribution}}
+     when: ansible_distribution == "CentOS"
+   
+   - name: Run this when the distribution is Ubuntu
+     ansible.builtin.debug:
+      msg: welcome to Ubunty {{ansible_distribution}}
+     when: ansible_distribution == "Ubuntu"
