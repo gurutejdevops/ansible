@@ -1,6 +1,5 @@
 - name: demo on copy files
   hosts: all
-  become: yes
 
   tasks:
    - name: copy the files from ansible server to remote servers
@@ -9,5 +8,5 @@
       dest: /home/centos/
       owner: root
       group: root
-      mode: '0644'
+      backup: yes
       
