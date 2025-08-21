@@ -3,6 +3,11 @@
   gather_facts: No
   vars:
     URL: www.amazon.com
+  vars_prompt:
+    - name: URNAME
+      prompt: Enter ur name
+      private: true
+
   tasks:
     - name: Task1
       ansible.builtin.debug:
@@ -16,4 +21,4 @@
 
     - name: Task3
       ansible.builtin.debug:
-        msg: The task2 value at run time {{URL}}
+        msg: The task2 value at run time {{NAME}}
