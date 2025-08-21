@@ -7,6 +7,8 @@
     - name: URNAME
       prompt: Enter ur name
       private: false
+  vars_files:
+    - "{{ENV}}.yml"
 
   tasks:
     - name: Task1
@@ -22,3 +24,7 @@
     - name: Task3
       ansible.builtin.debug:
         msg: The task2 value at run time {{NAME}}
+
+    - name: Task4
+      ansible.builtin.debug:
+        msg: The task4 value from dev.yaml file {{INS_TYPE}}
