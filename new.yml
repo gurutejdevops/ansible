@@ -56,7 +56,7 @@
 
     - name: declare a variable
       ansible.builtin.set_fact:
-        EXITCODE: {{OUT.rc}}
+        EXITCODE: "{{OUT.rc}}"
 
     - name: Tp print the exit code of uptime
       ansible.builtin.debug:
