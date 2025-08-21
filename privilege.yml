@@ -9,4 +9,4 @@
       register: OUT
     
     - name: To print the id
-      action: debug msg="{{OUT}}"
+      action: debug msg="{{OUT.stdout}}"
