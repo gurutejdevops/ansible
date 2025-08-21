@@ -1,0 +1,28 @@
+- name: Demo on tags
+  hosts: all
+  tasks:
+    - name: This is a frontend task
+      action: debug msg="Installing frontend"
+      tags: frontend
+
+    - name: starting frontend
+      action: debug msg="Starting frontend"
+      tags: frontend
+
+    - name: This is a Backend task
+      action: debug msg="Installing Backend"
+      tags: backend
+
+    - name: starting Backend
+      action: debug msg="Starting Backend"
+      tags: backend
+
+
+    - name: This is a DB task
+      action: debug msg="Installing DB"
+      tags: db
+
+    - name: starting DB
+      action: debug msg="Starting DB"
+      tags: db
+    
