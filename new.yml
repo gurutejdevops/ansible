@@ -60,4 +60,4 @@
 
     - name: Tp print the exit code of uptime
       ansible.builtin.debug:
-        msg: {{EXITCODE}}
+        msg: "{{EXITCODE}}"
