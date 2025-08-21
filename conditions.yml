@@ -5,16 +5,13 @@
 
   tasks:
    - name: Run this when the distribution is centos
-     ansible.builtin.debug:
-      msg: Welcome to Centos {{ansible_distribution}}
+     action: debug msg={{ansible_distribution}}
      when: ansible_distribution == "CentOS"
    
    - name: Run this when the distribution is Ubuntu
-     ansible.builtin.debug:
-      msg: welcome to Ubunty {{ansible_distribution}}
+     action: debug msg={{ansible_distribution}}
      when: ansible_distribution == "Ubuntu"
     
    - name: run this action if the action is guru
-     ansible.builtin.debug:
-      msg: Action is guru
+     action: debug msg=Action is guru
      when: action == "guru"
