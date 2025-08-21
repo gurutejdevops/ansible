@@ -64,8 +64,9 @@
 
     - name: to check java process
       ansible.builtin.shell: ps -ef | grep java | grep -v grep
-      ignore_errors: yes
       register: OUT
+      ignore_errors: yes
+      
 
     #if any task fails in playbook, the sub-sequent tasks will be failed and playbook will be exited.
 
