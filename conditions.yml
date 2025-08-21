@@ -12,6 +12,6 @@
      action: debug msg="Action variable is declared"
      when: action is defined     #execute this task if action variable is defined    
 
-   - name: run this task when the URL variable value is not declared
-     action: debug msg="URL variable value is not declared"
-     when: URL is not defined     #execute this task if action variable is not defined    
+   - name: run this task when the URL variable is not declared
+     action: debug msg="URL variable is not declared"
+     when: URL is not defined     #execute this task if URL variable is not defined    
