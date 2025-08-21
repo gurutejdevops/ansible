@@ -32,4 +32,4 @@
 
     - name: Task5
       ansible.builtin.debug:
-        msg: The task5 value from dev.yaml file {{INS_TYPE}}
+        msg: The task5 value from dev.yaml file {{INS_TYPE1}}
