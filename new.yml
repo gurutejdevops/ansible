@@ -61,3 +61,15 @@
     - name: Tp print the exit code of uptime
       ansible.builtin.debug:
         msg: "{{EXITCODE}}"
+
+    - name: to check java process
+      ansible.builtin.shell: ps -ef | grep java | grep -v grep
+      ignore_errors: yes
+      register: OUT
+
+    #if any task fails in playbook, the sub-sequent tasks will be failed and playbook will be exited.
+
+    - name: Tp print the java process output
+      ansible.builtin.debug:
+        msg: Tp print the java process output {{OUT}}
+    
