@@ -2,7 +2,6 @@
   hosts: all
   vars:
     action: guru
-    URL:
 
   tasks:
    - name: Run this when the distribution is centos
