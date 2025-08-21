@@ -7,11 +7,11 @@
    - name: Run this when the distribution is centos
      action: debug msg="{{ansible_distribution}}"
      when: ansible_distribution == "CentOS"
-   
-   - name: Run this when the distribution is Ubuntu
-     action: debug msg="{{ansible_distribution}}"
-     when: ansible_distribution == "Ubuntu"
-    
-   - name: run this action if the action is guru
-     action: debug msg="Action is guru"
-     when: action == "guru"
+
+   - name: run this task when the action variable is declared
+     action: debug msg="Action variable is declared"
+     when: action is defined     #execute this task if action variable is defined    
+
+   - name: run this task when the action variable is declared
+     action: debug msg="Action variable is declared"
+     when: action is not defined     #execute this task if action variable is not defined    
