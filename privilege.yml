@@ -1,5 +1,6 @@
 - name: Demo on privilege
   hosts: all
+  become: yes
 
   tasks: 
     - name: The id details
