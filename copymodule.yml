@@ -1,0 +1,8 @@
+- name: demo on copy files
+  hosts: all
+
+  tasks:
+   - name: copy the files from ansible server to remote servers
+     ansible.builtin.copy:
+      dest: /home/centos
+      content: "Hello Guru, New file from VS"
