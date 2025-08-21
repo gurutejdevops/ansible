@@ -34,6 +34,10 @@
       ansible.builtin.debug:
         msg: The task5 value from dev.yaml file {{INS_TYPE1}}
     
-    - name: Task6
+    - name: Task6                                       #for this task gather_facts should be yes
       ansible.builtin.debug:
         msg: The fact data is {{ansible_distribution}}
+
+    - name: Task7                                       #for this task gather_facts should be yes
+      ansible.builtin.debug:
+        msg: The mac address is {{ansible_default_ipv4.macaddress}}
