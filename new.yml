@@ -1,6 +1,6 @@
 - name: Play1
   hosts: all
-  gather_facts: No
+  #gather_facts: No
   vars:
     URL: www.amazon.com
   vars_prompt:
