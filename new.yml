@@ -41,3 +41,15 @@
     - name: Task7                                       #for this task gather_facts should be yes
       ansible.builtin.debug:
         msg: The mac address is {{ansible_default_ipv4.macaddress}}
+
+    - name: shell command uptime
+      ansible.builtin.shell: uptime
+      register: OUT
+
+    - name: To print uptime 
+      ansible.builtin.debug:
+        msg: The uptime is {{OUT}}
+    
+    - name: To print the stdout of uptime
+      ansible.builtin.debug:
+        msg: The print the stdout of uptime {{OUT.stdout}}
