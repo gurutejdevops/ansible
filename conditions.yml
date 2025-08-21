@@ -1,7 +1,7 @@
 - name: Play1
   hosts: all
   vars:
-    action: true
+    action: guru
 
   tasks:
    - name: Run this when the distribution is centos
@@ -17,4 +17,4 @@
    - name: run this action if the action is true
      ansible.builtin.debug:
       msg: Action is true
-     when: action
+     when: action == "guru"
