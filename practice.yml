@@ -3,11 +3,9 @@
   become: yes
   tasks:
     - name: copy the files from ansible server to remote server
-      ansible.builtin.copy:
-        src: dev.yml
-        dest: /home/centos/
-        owner: root
-        group: root
+      ansible.builtin.fetch:
+        src: /home/centos/cost.txt
+        dest: /home/centos/ansible
         backup: yes
 
 
