@@ -8,33 +8,32 @@
     - name: Run this when the distribution is centos
       ansible.builtin.debug:
         msg: Welcome to Centos {{ansible_distribution}}
+      when: ansible_distribution == "CentOS"
         
-        
+    - name: Run this when the distribution is Ubuntu
+      ansible.builtin.debug:
+        msg: Welcome to ubuntu {{ansible_distribution}}
+      when: ansible_distribution == "Ubuntu"
 
-    # - name: Run this when the distribution is Ubuntu
-    #   ansible.builtin.debug:
-    #     msg: Welcome to ubuntu {{ansible_distribution}}
-    #   when: ansible_distribution == "Ubuntu"
+    - name: Run this when the distribution is Ubuntu
+      ansible.builtin.debug:
+        msg: Action is true
+      when: action
 
-    # - name: Run this when the distribution is Ubuntu
-    #   ansible.builtin.debug:
-    #     msg: Action is true
-    #   when: action
+    - name: Run this when the distribution is Ubuntu
+      ansible.builtin.debug:
+        msg: Yes the URL value is guru
+      when: URL == "guru"
 
-    # - name: Run this when the distribution is Ubuntu
-    #   ansible.builtin.debug:
-    #     msg: Yes the URL value is guru
-    #   when: URL == "guru"
+    - name: Check whether action variable is defined or not
+      ansible.builtin.debug:
+        msg: action variable is declared
+      when: action is defined 
 
-    # - name: Check whether action variable is defined or not
-    #   ansible.builtin.debug:
-    #     msg: action variable is declared
-    #   when: action is defined 
-
-    # - name: Check whether course variable is defined or not
-    #   ansible.builtin.debug:
-    #     msg: course variable is not declared
-    #   when: course is not defined 
+    - name: Check whether course variable is defined or not
+      ansible.builtin.debug:
+        msg: course variable is not declared
+      when: course is not defined 
     
 
 
