@@ -13,9 +13,18 @@
         - amar
       register: user_result
 
-    - name: Show message after user creation
+    # - name: Show message after user creation
+    #   ansible.builtin.debug:
+    #     msg: The details are "{{user_result}}"
+
+    - name: show message after the user creation
       ansible.builtin.debug:
-        msg: The details are "{{user_result}}"
+        msg: "User added {{item}}"
+      loop:
+        - tanvi
+        - rithanya
+        - amar
+
       
 
 
