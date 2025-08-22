@@ -14,6 +14,6 @@
       
     - name: Printing the default variable
       ansible.builtin.debug:
-      msg: mac address is "{{ansible_default_ipv4.macaddress}}"
+        msg: mac address is "{{ansible_default_ipv4.macaddress}}"
 
 
