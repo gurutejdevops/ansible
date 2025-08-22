@@ -5,6 +5,10 @@
   vars_prompt:
     - name: URNAME
       prompt: enter ur name
+  vars_files:
+    - "{{ENV}}.yml"
+    - "{{ENV1}}.yml"
+  gather_facts: no
 
   tasks:
     - name: print the global variable
@@ -17,3 +21,12 @@
     - name: print the global variable
       ansible.builtin.debug: 
         msg: The value of CLIV is {{NAME}}
+
+    - name: print the global variable
+      ansible.builtin.debug: 
+        msg: The value of CLIV is {{INS_TYPE}}
+
+    - name: print the global variable
+      ansible.builtin.debug: 
+        msg: The value of CLIV is {{INS_TYPE1}}
+
