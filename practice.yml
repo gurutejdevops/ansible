@@ -10,7 +10,7 @@
       loop:
         - git
         - vim
-        - get
+        - wget
 
       
 
