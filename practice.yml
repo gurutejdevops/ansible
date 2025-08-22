@@ -6,7 +6,6 @@
       ansible.builtin.copy:
         src: dev.yml
         dest: /home/centos/
-        content: "dev.yml file"
         owner: root
         group: root
         backup: yes
