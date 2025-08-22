@@ -9,9 +9,9 @@
         uid: "{{item.uid}}"
         state: present
       loop:
-        - { name: vikram, uid: 1005 } 
-        - { name: vishal, uid: 1006 }
-        - { name: venu, uid: 1007 }
+        - { name: 'vikram', uid: 1005 } 
+        - { name: 'vishal', uid: 1006 }
+        - { name: 'venu', uid: 1007 }
       register: OUT
 
     - name: Print the OUT
