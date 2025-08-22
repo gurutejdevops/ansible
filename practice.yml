@@ -29,6 +29,18 @@
       ansible.builtin.debug: 
         msg: uptime is "{{EXITCODE}}"
 
+    - name: shell command to check java process
+      ansible.builtin.shell: ps -u centos | grep sshd
+      register: OUTPUT
+      ignore_errors: yes
+
+    - name: print the OUTPUT content
+      ansible.builtin.debug: 
+        msg: The value of GV is "{{OUTPUT}}"
+      
+
+    
+
      
 
 
