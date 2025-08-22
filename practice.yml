@@ -5,7 +5,7 @@
   tasks:
     - name: Install git, vim, wget
       ansible.builtin.package:
-        name: {{item}}
+        name: "{{item}}"
         state: present
         update_cache: yes
         use: yum
@@ -19,7 +19,7 @@
      
     - name: Install git, vim, wget
       ansible.builtin.yum:
-        name: {{item}}
+        name: "{{item}}"
         state: present
         update_cache: yes
       loop:
