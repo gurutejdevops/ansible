@@ -1,27 +1,16 @@
-- name: create users
+- name: yum module
   hosts: all
   become: yes
 
   tasks:
-    - name: Add users
-      ansible.builtin.user:
+    - name: Install multiple packages
+      ansible.builtin.yum:
         name: "{{item}}"
         state: present
       loop:
-        - tanvi
-        - rithanya
-        - amar
-      register: user_result
-
-    - name: show message after the user creation
-      ansible.builtin.debug:
-        msg: "User added {{myvar}}"
-      loop:
-        - tanvi
-        - rithanya
-        - amar
-      loop_control:
-        loop_var: myvar
+        - git
+        - vim
+        - get
 
       
 
