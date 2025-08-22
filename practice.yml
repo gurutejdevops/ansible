@@ -4,18 +4,12 @@
   tasks: 
     - name: Frontend
       ansible.builtin.debug:
-        msg: This fronend
-      tags: frontend
-        
-    - name: backend
-      ansible.builtin.debug:
-        msg: This backend
-      tags: backend
+        msg: "The value of loop is {{item}}"
+      loop:
+        - 100
+        - 200
+        - 300
 
-    - name: DB
-      ansible.builtin.debug:
-        msg: This db
-      tags: db
 
     
 
