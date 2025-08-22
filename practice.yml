@@ -6,7 +6,6 @@
       ansible.builtin.fetch:
         src: /home/centos/cost.txt
         dest: /home/centos/ansible
-        backup: yes
 
 
     
