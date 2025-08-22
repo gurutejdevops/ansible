@@ -4,7 +4,7 @@
 
   tasks:
     - name: Add users
-      ansible.builtin.yum:
+      ansible.builtin.user:
         name: "{{item.name}}"
         uid: "{{item.uid}}"
         state: present
