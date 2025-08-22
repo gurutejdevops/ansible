@@ -1,16 +1,22 @@
-- name: yum module
+- name: Creating users
   hosts: all
   become: yes
 
   tasks:
-    - name: Install multiple packages
+    - name: Add users
       ansible.builtin.yum:
-        name: "{{item}}"
+        name: "{{item.name}}"
+        uid: "{{item.uid}}"
         state: present
       loop:
-        - git
-        - vim
-        - wget
+        - { name: vikram, uid: 1005 } 
+        - { name: vishal, uid: 1006 }
+        - { name: venu, uid: 1007 }
+      register: OUT
+
+    - name: Print the OUT
+      ansible.builtin.debug:
+        msg: "The values are {{OUT}}"
 
       
 
