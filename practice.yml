@@ -2,31 +2,18 @@
   hosts: all
   vars:
     URL: www.google.com
-  vars_prompt:
-    - name: URNAME
-      prompt: enter ur name
-  vars_files:
-    - "{{ENV}}.yml"
-    - "{{ENV1}}.yml"
-  gather_facts: no
 
   tasks:
     - name: print the global variable
       ansible.builtin.debug: 
         msg: The value of GV is {{URL}}
-    - name: The print the prompt var
+
+    - name: print the global variables
+      ansible.builtin.debug: 
+        msg: The value of GV is "{{ansible_distribution}}"
+      
+    - name: Printing the default variable
       ansible.builtin.debug:
-        msg: The prompt value is {{URNAME}}
+      msg: mac address is "{{ansible_default_ipv4.macaddress}}"
 
-    - name: print the global variable
-      ansible.builtin.debug: 
-        msg: The value of CLIV is {{NAME}}
-
-    - name: print the global variable
-      ansible.builtin.debug: 
-        msg: The value of CLIV is {{INS_TYPE}}
-
-    - name: print the global variable
-      ansible.builtin.debug: 
-        msg: The value of CLIV is {{INS_TYPE1}}
 
