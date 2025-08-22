@@ -1,25 +1,37 @@
-- name: Creating users
+- name: Demo on Yum
   hosts: all
   become: yes
 
   tasks:
-    - name: Add users
-      ansible.builtin.user:
-        name: "{{item}}"
-        state: absent
+    - name: Install git, vim, wget
+      ansible.builtin.package:
+        name: {{item}}
+        state: present
+        update_cache: yes
+        use: yum
       loop:
-        - vishal
-        - venu
-        - amar
-        - tanvi
-        - rithanya
-        - vikram
+        - git
+        - vim
+        - wget
+        - nginx
       register: OUT
 
-    - name: Print the OUT
-      ansible.builtin.debug:
-        msg: "The values are {{OUT}}"
+     
+    - name: Install git, vim, wget
+      ansible.builtin.yum:
+        name: {{item}}
+        state: present
+        update_cache: yes
+      loop:
+        - git
+        - vim
+        - wget
+        - nginx
+      register: OUTPUT
 
+    - name: To print the OUTPUT variable
+      ansible.builtin.debug:
+        msg: "The content in {{OUTPUT}}"
       
 
 
