@@ -1,42 +1,44 @@
 - name: Play1
   hosts: all
   vars:
-    URL: www.google.com
-  gather_facts: no
+    action: true
+    URL: guru
 
-  tasks:
-    - name: print the global variable
-      ansible.builtin.debug: 
-        msg: The value of GV is {{URL}}
+  tasks: 
+    - name: Run this when the distribution is centos
+      ansible.builtin.debug:
+        msg: Welcome to Centos {{ansible_distribution}}
+      when: ansible_distribution == "centOS"
 
-    - name: Execute the uptime
-      ansible.builtin.shell: uptime
-      register: OUT
+    - name: Run this when the distribution is Ubuntu
+      ansible.builtin.debug:
+        msg: Welcome to Centos {{ansible_distribution}}
+      when: ansible_distribution == "Ubuntu"
 
-    - name: print the uptime
-      ansible.builtin.debug: 
-        msg: uptime is "{{OUT}}"
+    - name: Run this when the distribution is Ubuntu
+      ansible.builtin.debug:
+        msg: Action is true
+      when: action
 
-    - name: print the uptime stdout
-      ansible.builtin.debug: 
-        msg: uptime is "{{OUT.stdout}}"
+    - name: Run this when the distribution is Ubuntu
+      ansible.builtin.debug:
+        msg: Yes the URL value is guru
+      when: URL == "guru"
+
+    - name: Check whether action variable is defined or not
+      ansible.builtin.debug:
+        msg: action variable is declared
+      when: action is defined 
+
+    - name: Check whether course variable is defined or not
+      ansible.builtin.debug:
+        msg: course variable is not declared
+      when: course is not defined 
     
-    - name: declare a variable
-      ansible.builtin.set_fact:
-        EXITCODE: "{{OUT.rc}}"
 
-    - name: print the uptime rc
-      ansible.builtin.debug: 
-        msg: uptime is "{{EXITCODE}}"
 
-    - name: shell command to check java process
-      ansible.builtin.shell: ps -u centos | grep sshd
-      register: OUTPUT
-      ignore_errors: yes
+    
 
-    - name: print the OUTPUT content
-      ansible.builtin.debug: 
-        msg: "The value of GV is {{OUTPUT}}"
       
 
     
