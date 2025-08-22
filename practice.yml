@@ -36,7 +36,7 @@
 
     - name: print the OUTPUT content
       ansible.builtin.debug: 
-        msg: The value of GV is "{{OUTPUT}}"
+        msg: The value of GV is {{OUTPUT}}
       
 
     
