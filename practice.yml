@@ -2,18 +2,25 @@
   hosts: all
   vars:
     URL: www.google.com
+  gather_facts: no
 
   tasks:
     - name: print the global variable
       ansible.builtin.debug: 
         msg: The value of GV is {{URL}}
 
-    - name: print the global variables
+    - name: Execute the uptime
+      ansible.builtin.shell: uptime
+      register: OUT
+
+    - name: print the uptime
       ansible.builtin.debug: 
-        msg: The value of GV is "{{ansible_distribution}}"
-      
-    - name: Printing the default variable
-      ansible.builtin.debug:
-        msg: mac address is "{{ansible_default_ipv4.macaddress}}"
+        msg: uptime is "{{OUT}}"
+
+    - name: print the uptime
+      ansible.builtin.debug: 
+        msg: uptime is "{{OUT.stdout}}"
+
+     
 
 
