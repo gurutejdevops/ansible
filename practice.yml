@@ -13,3 +13,7 @@
     - name: The print the prompt var
       ansible.builtin.debug:
         msg: The prompt value is {{URNAME}}
+
+    - name: print the global variable
+      ansible.builtin.debug: 
+        msg: The value of CLIV is {{NAME}}
