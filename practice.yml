@@ -8,11 +8,11 @@
     - name: Run this when the distribution is centos
       ansible.builtin.debug:
         msg: Welcome to Centos {{ansible_distribution}}
-      when: ansible_distribution == "centOS"
+      when: ansible_distribution == centOS
 
     - name: Run this when the distribution is Ubuntu
       ansible.builtin.debug:
-        msg: Welcome to Centos {{ansible_distribution}}
+        msg: Welcome to ubuntu {{ansible_distribution}}
       when: ansible_distribution == "Ubuntu"
 
     - name: Run this when the distribution is Ubuntu
