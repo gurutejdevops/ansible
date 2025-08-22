@@ -7,11 +7,15 @@
       ansible.builtin.user:
         name: "{{item}}"
         state: present
-        msg: "The value of {{item}}"
       loop:
         - tanvi
         - rithanya
         - amar
+      register: user_result
+
+    - name: Show message after user creation
+      ansible.builtin.debug:
+        msg: The details are "{{user_result}}"
       
 
 
