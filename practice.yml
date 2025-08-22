@@ -3,18 +3,18 @@
   become: yes
 
   tasks:
-    - name: Install git, vim, wget
-      ansible.builtin.package:
-        name: "{{item}}"
-        state: present
-        update_cache: yes
-        use: yum
-      loop:
-        - git
-        - vim
-        - wget
-        - nginx
-      register: OUT
+    # - name: Install git, vim, wget
+    #   ansible.builtin.package:
+    #     name: "{{item}}"
+    #     state: present
+    #     update_cache: yes
+    #     use: yum
+    #   loop:
+    #     - git
+    #     - vim
+    #     - wget
+    #     - nginx
+    #   register: OUT
    
     - name: COntent
       ansible.builtin.yum:
