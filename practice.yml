@@ -15,9 +15,8 @@
         - wget
         - nginx
       register: OUT
-
-     
-    - name: Install git, vim, wget, nginx
+   
+    - name: COntent
       ansible.builtin.yum:
         name: "{{item}}"
         state: present
