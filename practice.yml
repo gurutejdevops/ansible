@@ -5,13 +5,15 @@
   tasks:
     - name: Add users
       ansible.builtin.user:
-        name: "{{item.name}}"
-        uid: "{{item.uid}}"
-        state: present
+        name: "{{item}}"
+        state: absent
       loop:
-        - { name: 'vikram', uid: 1005 } 
-        - { name: 'vishal', uid: 1006 }
-        - { name: 'venu', uid: 1007 }
+        - vishal
+        - venu
+        - amar
+        - tanvi
+        - rithanya
+        - vikram
       register: OUT
 
     - name: Print the OUT
