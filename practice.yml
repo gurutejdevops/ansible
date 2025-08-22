@@ -30,7 +30,7 @@
 
     - name: To print the OUTPUT variable
       ansible.builtin.debug:
-        msg: "The content in {{OUTPUT}}"
+        msg: The content in "{{OUTPUT}}"
       
 
 
