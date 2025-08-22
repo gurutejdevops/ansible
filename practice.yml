@@ -1,39 +1,11 @@
 - name: Demo on Yum
   hosts: all
   become: yes
-
   tasks:
-    # - name: Install git, vim, wget
-    #   ansible.builtin.package:
-    #     name: "{{item}}"
-    #     state: present
-    #     update_cache: yes
-    #     use: yum
-    #   loop:
-    #     - git
-    #     - vim
-    #     - wget
-    #     - nginx
-    #   register: OUT
-        # ignore_errors: yes
-   
-    - name: COntent
-      ansible.builtin.yum:
-        name: "{{item}}"
-        state: present
-        update_cache: yes
-      loop:
-        - git
-        - vim
-        - wget
-        - nginx
-      register: OUTPUT
-      ignore_errors: yes
-
-    - name: To print the OUTPUT variable
-      ansible.builtin.debug:
-        msg: The content in "{{OUTPUT}}"
-      
+    - name: copy the files from ansible server to remote server
+      ansible.builtin.copy:
+        dest: /home/centos/file2.txt
+        content: "Hello in file2"
 
 
     
