@@ -4,8 +4,8 @@
   tasks:
     - name: create user
       ansible.builtin.user:
-        name: {{item.name}}
-        uid: {{item.uid}}
+        name: "{{item.name}}"
+        uid: "{{item.uid}}"
         state: present
       loop:
         - { name: 'ram', uid: 1009 }
