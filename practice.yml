@@ -6,6 +6,7 @@
       ansible.builtin.user:
         name: {{item.name}}
         uid: {{item.uid}}
+        state: present
       loop:
         - { name: 'ram', uid: 1009 }
         - { name: 'raja', uid: 1010 }
