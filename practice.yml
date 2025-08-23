@@ -1,11 +1,16 @@
-- name: Demo on Yum
+- name: Demo on loop
   hosts: all
   become: yes
   tasks:
-    - name: copy the files from ansible server to remote server
-      ansible.builtin.fetch:
-        src: /home/centos/cost.txt
-        dest: /home/centos/ansible
+    - name: create user
+      ansible.builtin.user:
+        name: {{item.name}}
+        uid: {{item.uid}}
+      loop:
+        - { name: 'ram', uid: 1009 }
+        - { name: 'raja', uid: 1010 }
+        - { name: 'laxman', uid: 1011 }
+  
 
 
     
