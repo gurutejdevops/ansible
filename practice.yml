@@ -11,7 +11,20 @@
         - { name: 'ram', uid: 1009 }
         - { name: 'raja', uid: 1010 }
         - { name: 'laxman', uid: 1011 }
-  
+
+    - name: Print the loop values
+      ansible.builtin.debug:
+       msg: "The value of {{item}}"
+      loop:
+        - 100
+        - 200
+        - 300
+      when: item == 300
+      register: OUT
+
+    - name: Print the OUT
+      ansible.builtin.debug:
+        msg: "The content in {{OUT}}"
 
 
     
