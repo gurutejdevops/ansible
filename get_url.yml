@@ -1,0 +1,12 @@
+- name: Demo of get_url module
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Download a tar file from the web
+      ansible.builtin.get_url:
+        url: https://download.redis.io/releases/redis-6.2.6.tar.gz
+        dest: /tmp/redis.tar.gz
+        mode: '0644'
+        owner: root
+        group: root
