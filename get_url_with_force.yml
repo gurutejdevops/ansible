@@ -1,5 +1,5 @@
 - name: Demo of get_url module
-  hosts: web
+  hosts: all
   become: yes
 
   tasks:
