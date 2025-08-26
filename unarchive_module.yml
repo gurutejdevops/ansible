@@ -1,15 +1,29 @@
 - name: Demo on unarchive
   hosts: all
+  become: yes
 
   tasks:
-    - name: Get URL
-      ansible.builtin.get_url:
-        url: https://ftp.gnu.org/gnu/wget/wget-1.25.0.tar.gz
-        dest: /tmp/wget.tar.gz
-      delegate_to: localhost
+    - name: Ensure destination dir exists
+      ansible.builtin.file:
+        path: /opt/redis
+        state: directory
+        mode: "0755"
 
-    - name: Extract redis tarball on remote
+    # Download ONCE on the controller (localhost), with a higher timeout
+    - name: Download tarball to controller (once)
+      ansible.builtin.get_url:
+        url: https://github.com/htop-dev/htop/archive/refs/tags/3.3.0.tar.gz
+        dest: /tmp/htop-3.3.0.tar.gz
+        timeout: 120            # increase from default to handle slow links
+        # validate_certs: yes   # leave default; set to no only if you KNOW you need to
+      delegate_to: localhost
+      run_once: true
+
+    # Unarchive will upload from controller -> each remote and extract there
+    - name: Extract on remote from controller copy
       ansible.builtin.unarchive:
-       src: /tmp/wget.tar.gz
-       dest: /opt/redis/
+        src: /tmp/htop-3.3.0.tar.gz   # file on controller
+        dest: /opt/redis/
+        creates: /opt/redis/README.md # idempotence guard (any known file from the archive)
+        # copy: yes  # default: upload then extract
     # Here remote_src: yes tells Ansible not to copy from controller, because file already exists on target.
