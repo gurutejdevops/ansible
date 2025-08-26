@@ -1,5 +1,6 @@
 - name: Demo on file module
   hosts: all
+  become: yes
 
   tasks: 
     - name: Create redis directory
