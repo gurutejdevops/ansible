@@ -4,13 +4,12 @@
   tasks:
     - name: Get URL
       ansible.builtin.get_url:
-        url: https://example.com/app.tar.gz
-        dest: /tmp/app.tar.gz
+        url: https://ftp.gnu.org/gnu/wget/wget-1.21.4.tar.gz
+        dest: /tmp/wget.tar.gz
       delegate_to: localhost
-      
+
     - name: Extract redis tarball on remote
       ansible.builtin.unarchive:
-       src: /tmp/redis.tar.gz
+       src: /tmp/wget.tar.gz
        dest: /opt/redis/
-       remote_src: yes
     # Here remote_src: yes tells Ansible not to copy from controller, because file already exists on target.
