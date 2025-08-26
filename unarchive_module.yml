@@ -1,9 +1,11 @@
 - name: Demo on unarchieve
   hosts: all
+  become: yes
 
   tasks:
-    - name: Extract Redis tarball
+    - name: Extract website only if not already extracted
       ansible.builtin.unarchive:
         src: /tmp/redis.tar.gz
         dest: /opt/redis
         remote_src: yes
+        creates: /opt/redis/redis-6.2.6/README.md
