@@ -1,0 +1,12 @@
+- name: Demo on file module
+  hosts: all
+
+  tasks: 
+    - name: Create redis directory
+      ansible.builtin.file:
+        path: /opt/redis
+        state: directory
+        mode: '0755'
+        owner: redis
+        group: redis
+    
