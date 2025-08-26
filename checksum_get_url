@@ -11,6 +11,6 @@
 
     - name: Download with checksum verification
       ansible.builtin.debug:
-        msg: The value of {{OUT}}
+        msg: "The value of {{OUT}}"
 
       
