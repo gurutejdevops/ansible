@@ -5,7 +5,6 @@
     - name: Extract redis tarball on remote
       ansible.builtin.unarchive:
        src: /tmp/redis.tar.gz
-       dest: /opt/redis
+       dest: /opt/redis/
        remote_src: yes
     # Here remote_src: yes tells Ansible not to copy from controller, because file already exists on target.
-    
