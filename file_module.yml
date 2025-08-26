@@ -3,8 +3,8 @@
   become: yes
 
   tasks: 
-    - name: Create Empty file
+    - name: Ensure config file exists
       ansible.builtin.file:
         dest: /var/log/redis.log
-        state: touch
+        state: file
     
