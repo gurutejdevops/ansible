@@ -3,8 +3,8 @@
   become: yes
 
   tasks: 
-    - name: Create redis directory
+    - name: Create Empty file
       ansible.builtin.file:
-        path: /opt/redis
-        state: directory
+        dest: /var/log/redis.log
+        state: touch
     
