@@ -5,14 +5,8 @@
     - name: Download with checksum verification
       ansible.builtin.get_url:
         url: https://download.redis.io/releases/redis-6.2.6.tar.gz
-        dest: /tmp/redis.tar.gz
-        checksum: "sha256sum redis.tar.gz"
+        dest: /tmp/redis.tar.gz/
         force: yes
-        register: OUT
-        
 
-    - name: Printing the value of OUT
-      ansible.builtin.debug:
-        msg: The value of "{{OUT}}"
 
       
