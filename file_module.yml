@@ -6,5 +6,5 @@
     - name: Ensure config file exists
       ansible.builtin.file:
         dest: /var/log/redis.log
-        state: file
+        state: absent
     
