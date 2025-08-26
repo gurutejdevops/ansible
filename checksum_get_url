@@ -9,7 +9,7 @@
         checksum: "sha256sum redis.tar.gz"
         register: OUT
 
-    - name: Download with checksum verification
+    - name: Printing the value of OUT
       ansible.builtin.debug:
         msg: "The value of {{OUT}}"
 
