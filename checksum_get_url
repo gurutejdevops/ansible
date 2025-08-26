@@ -13,6 +13,6 @@
 
     - name: Printing the value of OUT
       ansible.builtin.debug:
-        msg: "The value of {{OUT}}"
+        msg: The value of "{{OUT}}"
 
       
