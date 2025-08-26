@@ -4,7 +4,7 @@
   tasks:
     - name: Get URL
       ansible.builtin.get_url:
-        url: https://ftp.gnu.org/gnu/wget/wget-1.21.4.tar.gz
+        url: https://ftp.gnu.org/gnu/wget/wget-1.25.0.tar.gz
         dest: /tmp/wget.tar.gz
       delegate_to: localhost
 
