@@ -5,6 +5,10 @@
   tasks: 
     - name: Ensure config file exists
       ansible.builtin.file:
-        dest: /var/log/redis.log
-        state: absent
+        dest: /opt/redis
+        state: directory
+        recurse: yes
+        owner: centos
+        group: centos
+        mode: '0755'
     
