@@ -2,6 +2,12 @@
   hosts: all
 
   tasks:
+    - name: Get URL
+      ansible.builtin.get_url:
+        url: https://example.com/app.tar.gz
+        dest: /tmp/app.tar.gz
+      delegate_to: localhost
+      
     - name: Extract redis tarball on remote
       ansible.builtin.unarchive:
        src: /tmp/redis.tar.gz
