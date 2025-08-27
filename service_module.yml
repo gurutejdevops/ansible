@@ -1,0 +1,13 @@
+- name: Demo on Service
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Ensure nginx is running and enabled at boot
+      ansible.builtin.service:
+       name: nginx
+       state: started
+       enable: yes
+
+
+
