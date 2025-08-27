@@ -3,11 +3,13 @@
 
   tasks:
     - name: Copy and keep backup of existing file
-      ansible.builtin.copy:
+      ansible.builtin.fetch:
         src: "{{ item.src }}"
         dest: "{{ item.dest }}"
+        flat: yes
       loop:
-        - { src: Hello.txt, dest: /home/centos/ }
-        - { src: Hello2.txt, dest: /home/centos/ }
+        - { src: /home/centos/Hello.txt, dest: /home/centos/ }
+        - { src: /home/centos/Hello2.txt, dest: /home/centos/ }
+      
 
 
