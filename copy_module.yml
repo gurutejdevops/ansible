@@ -4,7 +4,10 @@
   tasks:
     - name: Copy and keep backup of existing file
       ansible.builtin.copy:
-        src: Hello.txt
-        dest: /home/centos/Hello.txt
-        force: yes
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+      loop:
+        - { src: Hello.txt, dest: /home/centos/ }
+        - { src: Hello2.txt, dest: /home/centos/ }
+
 
