@@ -2,8 +2,7 @@
   hosts: all
 
   tasks:
-    - name: copy the file
+    - name: Create a file with content
       ansible.builtin.copy:
-        src: Hello.txt
-        dest: /home/centos/
-        
+        dest: /home/centos/Hello.txt
+        content: "Welcome to Ansible practice!\nThis file was created by copy module."
