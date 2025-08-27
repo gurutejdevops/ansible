@@ -7,9 +7,10 @@
         src: "{{ item.src }}"
         dest: "{{ item.dest }}"
         flat: yes
+        fail_on_missing: yes
       loop:
-        - { src: /home/centos/Hello.txt, dest: /home/centos/ }
-        - { src: /home/centos/Hello2.txt, dest: /home/centos/ }
+        - { src: /home/centos/Hello1.txt, dest: /home/centos/ }
+        - { src: /home/centos/Hello3.txt, dest: /home/centos/ }
       
 
 
