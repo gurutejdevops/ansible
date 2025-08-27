@@ -1,0 +1,9 @@
+- name: Demo on copy module
+  hosts: all
+
+  tasks:
+    - name: copy the file
+      ansible.builtin.copy:
+        src: Hello.txt
+        dest: /home/centos/
+        
