@@ -1,0 +1,14 @@
+- name: Demo on slurp
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Read /etc/hosts from remote
+      ansible.builtin.slurp:
+        src: /etc/hosts
+      register: OUT
+
+    - name: Show file contents
+      ansible.builtin.debug:
+       msg: "{{ OUT.content | b64decode }}"
+
