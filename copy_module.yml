@@ -2,10 +2,9 @@
   hosts: all
 
   tasks:
-    - name: Create a file with content
+    - name: Copy and keep backup of existing file
       ansible.builtin.copy:
         src: Hello.txt
         dest: /home/centos/Hello.txt
-        owner: centos
-        group: centos
-        mode: '0755'
+        backup: yes
+
