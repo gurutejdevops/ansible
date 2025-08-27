@@ -6,5 +6,4 @@
       ansible.builtin.copy:
         src: Hello.txt
         dest: /home/centos/Hello.txt
-        backup: yes
 
