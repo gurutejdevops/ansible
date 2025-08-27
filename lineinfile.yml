@@ -6,6 +6,6 @@
     - name: Adding a line
       ansible.builtin.lineinfile:
         path: /etc/passwd
+        state: absent
         regexp: '^guru'
-        line: guru:1004:1003:200
         backup: yes
