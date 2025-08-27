@@ -4,5 +4,8 @@
   tasks:
     - name: Create a file with content
       ansible.builtin.copy:
+        src: Hello.txt
         dest: /home/centos/Hello.txt
-        content: "Welcome to Ansible practice!\nThis file was created by copy module."
+        owner: centos
+        group: centos
+        mode: '0755'
