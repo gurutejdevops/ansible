@@ -4,21 +4,16 @@
 
   tasks:
     - name: Ensure nginx is running and enabled at boot
-      ansible.builtin.template:
-       src: nginx.conf
-       dest: /etc/nginx/nginx.conf
-      notify: Restart nginx
+      ansible.builtin.service:
+       name: "{{ item }}"
+       state: started
+       enabled: yes
+      
+      loop:
+        - chronyd
+        - firewalld
+        - rsyslog
 
-    - name: Make sure nginx is running
-      ansible.builtin.service:
-        name: nginx
-        state: started
-  
-  handlers:
-    - name: Restart nginx
-      ansible.builtin.service:
-        name: nginx
-        state: restarted
   
 
 
