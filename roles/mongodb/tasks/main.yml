@@ -11,7 +11,7 @@
 - name: Start and enable the Mongodb
   ansible.builtin.systemd:
     name: mongod
-    state: started
+    state: restarted
     enabled: yes
 
 - name: Update Listen IP address from 127.0.0.1 to 0.0.0.0 in the config file
