@@ -3,8 +3,7 @@
     url: https://rpm.nodesource.com/pub_16.x/nodistro/repo/nodesource-release-nodistro-1.noarch.rpm
     dest: /tmp/
     
-
-# - name: Download the NodeJs
-#   ansible.builtin.package:
-#     name: nodejs
-#     state: present
+- name: Download the NodeJs
+  ansible.builtin.package:
+    name: nodejs
+    state: present
