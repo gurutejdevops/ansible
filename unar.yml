@@ -2,8 +2,9 @@
   hosts: all
   become: yes
 
-- name: Download and copy it under the Nginx path.
-  ansible.builtin.unarchive:
-    src: https://github.com/stans-robot-project/frontend/archive/main.zip
-    dest: /tmp/
-    remote_src: yes
+  tasks:
+    - name: Download and copy it under the Nginx path.
+      ansible.builtin.unarchive:
+        src: https://github.com/stans-robot-project/frontend/archive/main.zip
+        dest: /tmp/
+        remote_src: yes
