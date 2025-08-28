@@ -11,7 +11,7 @@
 - name: Start and enable the Mongodb
   ansible.builtin.systemd:
     name: mongod
-    state: restarted
+    state: started
     enabled: yes
 
 # - name: Unarchieve
