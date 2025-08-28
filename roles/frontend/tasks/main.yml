@@ -30,4 +30,4 @@
     name: nginx
     state: restarted
     enabled: yes
-    daemon_relaod: yes
+    daemon_reload: yes
