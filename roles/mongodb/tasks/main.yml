@@ -27,7 +27,9 @@
     dest: /tmp/
     remote_src: yes
 
-# - name: chanfing directory
-#   ansible.builtin.file:
-#     path: mongodb-main
-#     state: present
+- name: Inject MongoDB schemas
+  community.mongodb.mongodb_shell:
+    file: /tmp/mongodb-main/{{ item }}.js   
+  loop:
+    - catalogue
+    - users
