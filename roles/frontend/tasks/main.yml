@@ -3,12 +3,6 @@
     name: nginx
     state: present
 
-- name: Enable and start the nginx service
-  ansible.builtin.systemd:
-    name: nginx
-    state: started
-    enabled: yes
-
 - name: Download and copy it under the Nginx path.
   ansible.builtin.unarchive:
     src: https://github.com/stans-robot-project/frontend/archive/main.zip
@@ -25,3 +19,15 @@
     src: /tmp/frontend-main/static/
     dest: /usr/share/nginx/html/
     remote_src: yes
+
+- name: Copying the reverse conf file of frontend
+  ansible.builtin.copy:
+    src: roboshop.conf
+    dest: /etc/nginx/default.d/roboshop.conf
+
+- name: Enable and start the nginx service
+  ansible.builtin.systemd:
+    name: nginx
+    state: restarted
+    enabled: yes
+    daemon_relaod: yes
