@@ -1,6 +1,6 @@
 [frontend]
-frontend.s55roboshop.shop
+172.31.38.10
 [mongodb]
-mongodb.roboshop.internal
+172.31.41.191
 [catalogue]
-catalogue.roboshop.internal
+172.31.36.128

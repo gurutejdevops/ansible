@@ -4,7 +4,7 @@
     dest: /etc/yum.repos.d/mongodb.repo
 
 - name: copy the mongodb repo
-  ansible.builtin.package:
+  ansible.builtin.yum:
     name: mongodb-org
     state: present
 
@@ -19,7 +19,7 @@
     path: /etc/mongod.conf
     regexp: '127\.0\.0\.1'
     replace: '0.0.0.0'
-    backup: yes  #not required remote_src to mention
+    backup: yes  
 
 - name: Unarchieve
   ansible.builtin.unarchive:
