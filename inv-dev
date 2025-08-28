@@ -2,3 +2,5 @@
 frontend.s55roboshop.shop
 [mongodb]
 mongodb.roboshop.internal
+[catalogue]
+catalogue.roboshop.internal
