@@ -10,7 +10,7 @@
 
 - name: Crreate Application user
   ansible.builtin.user:
-    user: {{APPUSER}}
+    user: "{{APPUSER}}"
 
 - name: unarchieve the folder
   ansible.builtin.unarchive:
