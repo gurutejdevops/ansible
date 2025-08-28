@@ -7,7 +7,7 @@
   ansible.builtin.systemd:
     name: nginx
     state: started
-  enabled: yes
+    enabled: yes
 
 - name: Download and copy it under the Nginx path.
   ansible.builtin.unarchive:
