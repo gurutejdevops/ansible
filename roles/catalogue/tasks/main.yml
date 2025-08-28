@@ -1,16 +1,22 @@
-- name: Download NodeSource repo RPM
+- name: Install NodeSource repo RPM
+  become: true
   ansible.builtin.get_url:
     url: https://rpm.nodesource.com/pub_16.x/nodistro/repo/nodesource-release-nodistro-1.noarch.rpm
     dest: /tmp/nodesource-release.rpm
-    
-- name: Download the NodeJs
+
+- name: Add NodeSource repo
+  become: true
   ansible.builtin.yum:
     name: /tmp/nodesource-release.rpm
     state: present
-    
-- name: Install Node.js (includes npm)
+
+# Important: install nodejs (and npm if separate on your distro)
+- name: Install Node.js (includes npm on NodeSource)
+  become: true
   ansible.builtin.yum:
-    name: nodejs
+    name:
+      - nodejs
+      - npm          # harmless if npm already comes with nodejs; required on some distros
     state: present
 
 - name: Crreate Application user
