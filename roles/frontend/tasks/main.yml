@@ -1,0 +1,21 @@
+- name: Install Nginx
+  ansible.builtin.package:
+    name: nginx
+    state: present
+
+- name: Enable and start the nginx service
+  ansible.builtin.systemd:
+    name: nginx
+    state: started
+  enabled: yes
+
+- name: Download and copy it under the Nginx path.
+  ansible.builtin.unarchive:
+    src: https://github.com/stans-robot-project/frontend/archive/main.zip
+    dest: /tmp/
+    remote_src: yes
+
+- name: Performing Cleanup
+  ansible.builtin.file:
+    path: /usr/share/nginx/html/
+    state: absent
