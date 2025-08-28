@@ -31,3 +31,20 @@
     owner: roboshop
     group: roboshop
     remote_src: yes
+
+- name: Install project dependencies (npm install)
+  community.general.npm:
+    path: /home/roboshop/catalogue/  
+
+- name: Copying the systemd file
+  ansible.builtin.copy:
+    src: systemd.service
+    dest: /etc/systemd/system/catalogue.service
+    remote_src: yes
+
+- name: Start and enable the Catalogue
+  ansible.builtin.systemd:
+    name: catalogue
+    state: started
+    enabled: yes
+  daemon_reload: yes
