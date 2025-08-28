@@ -28,3 +28,4 @@
   ansible.builtin.copy:
     src: /tmp/catalogue-main/
     dest: /home/roboshop/
+    remote_src: yes
