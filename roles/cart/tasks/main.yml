@@ -52,6 +52,8 @@
   ansible.builtin.copy:
     src: /tmp/cart-main/
     dest: /home/roboshop/cart/
+    owner: roboshop
+    group: roboshop
     remote_src: yes
   notify: npm install
   
