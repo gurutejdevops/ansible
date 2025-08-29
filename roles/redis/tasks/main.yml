@@ -9,7 +9,7 @@
 #     dest: /etc/yum.repos.d/redis.repo
 
 - name: Install Redis
-  ansible.builtin.package:
+  ansible.builtin.yum:
     name: redis-6.2.13
     state: present
     update_cache: yes
