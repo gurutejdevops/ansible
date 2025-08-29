@@ -47,34 +47,27 @@
     src: /tmp/cart-main.zip
     dest: /tmp/
     remote_src: yes
-
-- name: cleanup
-  ansible.builtin.file:
-    path: /home/roboshop/cart/
-    state: absent
-  ignore_errors: yes
   
-
-# - name: copying
-#   ansible.builtin.copy:
-#     src: /tmp/cart-main/
-#     dest: /home/roboshop/cart/
-#     remote_src: yes
-#   when: cart_zip.changed
-#   notify: npm install
+- name: copying
+  ansible.builtin.copy:
+    src: /tmp/cart-main/
+    dest: /home/roboshop/cart/
+    remote_src: yes
+  when: cart_zip.changed
+  notify: npm install
   
-# # Systemd unit from template (idempotent)
-# - name: Deploy cart systemd unit
-#   ansible.builtin.template:
-#     src: systemd.service
-#     dest: /etc/systemd/system/cart.service
-#   notify:
-#     - daemon-reload
-#     - restart cart
+# Systemd unit from template (idempotent)
+- name: Deploy cart systemd unit
+  ansible.builtin.template:
+    src: systemd.service
+    dest: /etc/systemd/system/cart.service
+  notify:
+    - daemon-reload
+    - restart cart
 
-# # Ensure service is enabled/started (no unnecessary restarts)
-# - name: Enable & start cart
-#   ansible.builtin.service:
-#     name: cart
-#     state: started
-#     enabled: yes
+# Ensure service is enabled/started (no unnecessary restarts)
+- name: Enable & start cart
+  ansible.builtin.service:
+    name: cart
+    state: started
+    enabled: yes
