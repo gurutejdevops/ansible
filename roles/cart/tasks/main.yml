@@ -30,49 +30,47 @@
   ansible.builtin.file:
     path: /home/{{ APPUSER | default('roboshop') }}/cart/
     state: directory
-    owner: "{{ APPUSER | default('roboshop') }}"
-    group: "{{ APPUSER | default('roboshop') }}"
 
-# Fetch and unpack directly into the app dir; only once unless source changes
-- name: Download cart service zip
-  ansible.builtin.get_url:
-    url: https://github.com/stans-robot-project/cart/archive/refs/heads/main.zip
-    dest: /tmp/cart-main.zip
-  register: cart_zip
+# # Fetch and unpack directly into the app dir; only once unless source changes
+# - name: Download cart service zip
+#   ansible.builtin.get_url:
+#     url: https://github.com/stans-robot-project/cart/archive/refs/heads/main.zip
+#     dest: /tmp/cart-main.zip
+#   register: cart_zip
 
-- name: Unarchive into app dir (strip top folder)
-  ansible.builtin.unarchive:
-    src: /tmp/cart-main.zip
-    dest: /tmp/
-    remote_src: yes
+# - name: Unarchive into app dir (strip top folder)
+#   ansible.builtin.unarchive:
+#     src: /tmp/cart-main.zip
+#     dest: /tmp/
+#     remote_src: yes
 
-- name: cleanup
-  ansible.builtin.file:
-    path: /home/roboshop/user/
-    state: absent
-  ignore_errors: yes
-  when: cart_zip.changed
+# - name: cleanup
+#   ansible.builtin.file:
+#     path: /home/roboshop/user/
+#     state: absent
+#   ignore_errors: yes
+#   when: cart_zip.changed
 
-- name: copying
-  ansible.builtin.copy:
-    src: /tmp/cart-main/
-    dest: /home/roboshop/cart/
-    remote_src: yes
-  when: cart_zip.changed
-  notify: npm install
+# - name: copying
+#   ansible.builtin.copy:
+#     src: /tmp/cart-main/
+#     dest: /home/roboshop/cart/
+#     remote_src: yes
+#   when: cart_zip.changed
+#   notify: npm install
   
-# Systemd unit from template (idempotent)
-- name: Deploy cart systemd unit
-  ansible.builtin.template:
-    src: systemd.service
-    dest: /etc/systemd/system/cart.service
-  notify:
-    - daemon-reload
-    - restart cart
+# # Systemd unit from template (idempotent)
+# - name: Deploy cart systemd unit
+#   ansible.builtin.template:
+#     src: systemd.service
+#     dest: /etc/systemd/system/cart.service
+#   notify:
+#     - daemon-reload
+#     - restart cart
 
-# Ensure service is enabled/started (no unnecessary restarts)
-- name: Enable & start cart
-  ansible.builtin.service:
-    name: cart
-    state: started
-    enabled: yes
+# # Ensure service is enabled/started (no unnecessary restarts)
+# - name: Enable & start cart
+#   ansible.builtin.service:
+#     name: cart
+#     state: started
+#     enabled: yes
