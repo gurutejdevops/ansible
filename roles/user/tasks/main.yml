@@ -6,7 +6,7 @@
 
 - name: Clean cache & rebuild
   ansible_builtin.yum:
-    name: {{item}}
+    name: "{{ item }}"
     state: present
   loop:
     - clean all
