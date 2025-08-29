@@ -20,9 +20,7 @@
 - name: Install Node.js (includes npm on NodeSource)
   become: true
   ansible.builtin.yum:
-    name:
-      - nodejs
-      - npm          # harmless if npm already comes with nodejs; required on some distros
+    name: nodejs         # harmless if npm already comes with nodejs; required on some distros
     state: present
 
 - name: Crreate Application user
