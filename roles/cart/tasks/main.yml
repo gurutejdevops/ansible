@@ -34,7 +34,7 @@
     group: "{{ APPUSER | default('roboshop') }}"
 
 # Fetch and unpack directly into the app dir; only once unless source changes
-- name: Download user service zip
+- name: Download cart service zip
   ansible.builtin.get_url:
     url: https://github.com/stans-robot-project/cart/archive/refs/heads/main.zip
     dest: /tmp/cart-main.zip
@@ -49,22 +49,22 @@
     extra_opts: [--strip-components=1]
     owner: "{{ APPUSER | default('roboshop') }}"
     group: "{{ APPUSER | default('roboshop') }}"
-  when: user_zip.changed
+  when: cart_zip.changed
   notify: npm install
 
 # Systemd unit from template (idempotent)
-- name: Deploy user systemd unit
+- name: Deploy cart systemd unit
   ansible.builtin.template:
     src: systemd.service
-    dest: /etc/systemd/system/user.service
+    dest: /etc/systemd/system/cart.service
     mode: '0644'
   notify:
     - daemon-reload
-    - restart user
+    - restart cart
 
 # Ensure service is enabled/started (no unnecessary restarts)
-- name: Enable & start user
+- name: Enable & start cart
   ansible.builtin.service:
-    name: user
+    name: cart
     state: started
     enabled: yes

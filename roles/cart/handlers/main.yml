@@ -8,7 +8,7 @@
 - name: daemon-reload
   ansible.builtin.command: systemctl daemon-reload
 
-- name: restart user
+- name: restart cart
   ansible.builtin.service:
-    name: user
+    name: cart
     state: restarted
