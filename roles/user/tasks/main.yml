@@ -5,7 +5,7 @@
     backup: yes
 
 - name: Clean cache & rebuild
-  ansible_builtin.yum:
+  ansible.builtin.yum:
     name: "{{ item }}"
     state: present
   loop:
