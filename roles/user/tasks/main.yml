@@ -63,3 +63,77 @@
     state: started
     enabled: yes
     daemon_reload: yes
+
+
+# # roles/user/tasks/main.yml
+
+# - name: Ensure CentOS vault base repo is in place
+#   ansible.builtin.copy:
+#     src: CentOS-Base.repo
+#     dest: /etc/yum.repos.d/CentOS-Base.repo
+#     backup: yes
+
+# - name: Add NodeSource 16.x repo (Ansible-native, one-time)
+#   ansible.builtin.yum_repository:
+#     name: nodesource
+#     description: Node.js 16.x
+#     baseurl: https://rpm.nodesource.com/pub_16.x/el/7/$basearch
+#     gpgcheck: yes
+#     gpgkey: https://rpm.nodesource.com/pub/el/NODESOURCE-GPG-SIGNING-KEY-EL
+#     enabled: yes
+
+# - name: Install Node.js (npm included)
+#   ansible.builtin.yum:
+#     name: nodejs
+#     state: present
+#     update_cache: yes
+
+# - name: Create application user
+#   ansible.builtin.user:
+#     name: "{{ APPUSER | default('roboshop') }}"
+#     state: present
+#     shell: /bin/bash
+#     create_home: yes
+
+# - name: Create app directory
+#   ansible.builtin.file:
+#     path: /home/{{ APPUSER | default('roboshop') }}/user
+#     state: directory
+#     owner: "{{ APPUSER | default('roboshop') }}"
+#     group: "{{ APPUSER | default('roboshop') }}"
+
+# # Fetch and unpack directly into the app dir; only once unless source changes
+# - name: Download user service zip
+#   ansible.builtin.get_url:
+#     url: https://github.com/stans-robot-project/user/archive/refs/heads/main.zip
+#     dest: /tmp/user-main.zip
+#     mode: '0644'
+#   register: user_zip
+
+# - name: Unarchive into app dir (strip top folder)
+#   ansible.builtin.unarchive:
+#     src: /tmp/user-main.zip
+#     dest: /home/{{ APPUSER | default('roboshop') }}/user
+#     remote_src: yes
+#     extra_opts: [--strip-components=1]
+#     owner: "{{ APPUSER | default('roboshop') }}"
+#     group: "{{ APPUSER | default('roboshop') }}"
+#   when: user_zip.changed
+#   notify: npm install
+
+# # Systemd unit from template (idempotent)
+# - name: Deploy user systemd unit
+#   ansible.builtin.template:
+#     src: user.service.j2
+#     dest: /etc/systemd/system/user.service
+#     mode: '0644'
+#   notify:
+#     - daemon-reload
+#     - restart user
+
+# # Ensure service is enabled/started (no unnecessary restarts)
+# - name: Enable & start user
+#   ansible.builtin.service:
+#     name: user
+#     state: started
+#     enabled: yes

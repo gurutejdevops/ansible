@@ -1,0 +1,14 @@
+- name: npm install
+  ansible.builtin.command: npm ci --only=production
+  args:
+    chdir: /home/{{ APPUSER | default('roboshop') }}/user
+  become: true
+  become_user: "{{ APPUSER | default('roboshop') }}"
+
+- name: daemon-reload
+  ansible.builtin.command: systemctl daemon-reload
+
+- name: restart user
+  ansible.builtin.service:
+    name: user
+    state: restarted
