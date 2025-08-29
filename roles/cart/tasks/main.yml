@@ -48,12 +48,12 @@
     dest: /tmp/
     remote_src: yes
 
-# - name: cleanup
-#   ansible.builtin.file:
-#     path: /home/roboshop/user/
-#     state: absent
-#   ignore_errors: yes
-#   when: cart_zip.changed
+- name: cleanup
+  ansible.builtin.file:
+    path: /home/roboshop/cart/
+    state: absent
+  ignore_errors: yes
+  
 
 # - name: copying
 #   ansible.builtin.copy:
