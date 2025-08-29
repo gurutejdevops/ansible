@@ -33,7 +33,7 @@
   ansible.builtin.file:
     path: /home/roboshop/user
     state: absent
-  ignoring_errors: yes
+  ignore_errors: yes
 
 - name: copying
   ansible.builtin.copy:
@@ -46,5 +46,3 @@
 - name: Install project dependencies (npm install)
   community.general.npm:
     path: /home/roboshop/user/ 
-
-- 
