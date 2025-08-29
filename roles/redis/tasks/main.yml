@@ -1,12 +1,12 @@
-# - name: copyig the redis rep
-#   ansible.builtin.copy:
-#     src: redis.repo
-#     dest: /etc/yum.repos.d/redis.repo
-
 - name: copyig the redis rep
-  ansible.builtin.get_url:
-    url: https://raw.githubusercontent.com/stans-robot-project/redis/main/redis.repo
+  ansible.builtin.copy:
+    src: redis.repo
     dest: /etc/yum.repos.d/redis.repo
+
+# - name: copyig the redis rep
+#   ansible.builtin.get_url:
+#     url: https://raw.githubusercontent.com/stans-robot-project/redis/main/redis.repo
+#     dest: /etc/yum.repos.d/redis.repo
 
 - name: Install Redis
   ansible.builtin.package:
