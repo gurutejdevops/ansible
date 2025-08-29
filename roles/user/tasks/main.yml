@@ -4,14 +4,6 @@
     dest: /etc/yum.repos.d/CentOS-Base.repo
     backup: yes
 
-- name: Clean cache & rebuild
-  ansible.builtin.yum:
-    name: "{{ item }}"
-    state: present
-  loop:
-    - clean all
-    - makecache
-
 - name: Install NodeSource repo RPM
   become: true
   ansible.builtin.get_url:
