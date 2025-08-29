@@ -10,7 +10,7 @@
 
 - name: Install Redis
   ansible.builtin.yum:
-    name: redis-6.2.13
+    name: redis-6.2.12
     state: present
     update_cache: yes
 
