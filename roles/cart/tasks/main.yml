@@ -28,7 +28,7 @@
 
 - name: Create app directory
   ansible.builtin.file:
-    path: /home/{{ APPUSER | default('roboshop') }}/cart
+    path: /home/{{ APPUSER | default('roboshop') }}/cart/
     state: directory
     owner: "{{ APPUSER | default('roboshop') }}"
     group: "{{ APPUSER | default('roboshop') }}"
@@ -55,8 +55,8 @@
 
 - name: copying
   ansible.builtin.copy:
-    src: /tmp/user-main/
-    dest: /home/roboshop/user/
+    src: /tmp/cart-main/
+    dest: /home/roboshop/cart/
     remote_src: yes
   when: cart_zip.changed
   notify: npm install
