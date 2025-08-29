@@ -43,26 +43,36 @@
 - name: Unarchive into app dir (strip top folder)
   ansible.builtin.unarchive:
     src: /tmp/cart-main.zip
-    dest: /home/{{ APPUSER | default('roboshop') }}/cart/  
+    dest: /tmp/
     remote_src: yes
-#     extra_opts: [--strip-components=1]
-#     owner: "{{ APPUSER | default('roboshop') }}"
-#     group: "{{ APPUSER | default('roboshop') }}"
-#   when: cart_zip.changed
-#   notify: npm install
 
-# # Systemd unit from template (idempotent)
-# - name: Deploy cart systemd unit
-#   ansible.builtin.template:
-#     src: systemd.service
-#     dest: /etc/systemd/system/cart.service
-#   notify:
-#     - daemon-reload
-#     - restart cart
+- name: cleanup
+  ansible.builtin.file:
+    path: /home/roboshop/user/
+    state: absent
+  ignore_errors: yes
+  when: cart_zip.changed
 
-# # Ensure service is enabled/started (no unnecessary restarts)
-# - name: Enable & start cart
-#   ansible.builtin.service:
-#     name: cart
-#     state: started
-#     enabled: yes
+- name: copying
+  ansible.builtin.copy:
+    src: /tmp/user-main/
+    dest: /home/roboshop/user/
+    remote_src: yes
+  when: cart_zip.changed
+  notify: npm install
+  
+# Systemd unit from template (idempotent)
+- name: Deploy cart systemd unit
+  ansible.builtin.template:
+    src: systemd.service
+    dest: /etc/systemd/system/cart.service
+  notify:
+    - daemon-reload
+    - restart cart
+
+# Ensure service is enabled/started (no unnecessary restarts)
+- name: Enable & start cart
+  ansible.builtin.service:
+    name: cart
+    state: started
+    enabled: yes
