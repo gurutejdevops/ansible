@@ -1,5 +1,5 @@
 - name: npm install
-  ansible.builtin.command: npm ci --only=production
+  ansible.builtin.command: npm install
   args:
     chdir: /home/{{ APPUSER | default('roboshop') }}/cart/
 
