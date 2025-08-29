@@ -1,3 +1,17 @@
+- name: copy Centos base repo
+  ansible.builtin.copy:
+    src: CentOS-Base.repo
+    dest: /etc/yum.repos.d/CentOS-Base.repo
+    backup: yes
+
+- name: Clean cache & rebuild
+  ansible_builtin.yum:
+    name: {{item}}
+    state: present
+  loop:
+    - clean all
+    - makecache
+
 - name: Install NodeSource repo RPM
   become: true
   ansible.builtin.get_url:
