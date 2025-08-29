@@ -31,12 +31,16 @@
     path: /home/{{ APPUSER | default('roboshop') }}/cart/
     state: directory
 
-# # Fetch and unpack directly into the app dir; only once unless source changes
-# - name: Download cart service zip
-#   ansible.builtin.get_url:
-#     url: https://github.com/stans-robot-project/cart/archive/refs/heads/main.zip
-#     dest: /tmp/cart-main.zip
-#   register: cart_zip
+# Fetch and unpack directly into the app dir; only once unless source changes
+- name: Download cart service zip
+  ansible.builtin.get_url:
+    url: https://github.com/stans-robot-project/cart/archive/refs/heads/main.zip
+    dest: /tmp/cart-main.zip
+  register: cart_zip
+
+- name: print output
+  ansible.builtin.debug:
+    msg: "The out is {{cart_zip}}"
 
 # - name: Unarchive into app dir (strip top folder)
 #   ansible.builtin.unarchive:
