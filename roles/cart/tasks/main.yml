@@ -38,13 +38,12 @@
   ansible.builtin.get_url:
     url: https://github.com/stans-robot-project/cart/archive/refs/heads/main.zip
     dest: /tmp/cart-main.zip
-    mode: '0644'
   register: cart_zip
 
 - name: Unarchive into app dir (strip top folder)
   ansible.builtin.unarchive:
     src: /tmp/cart-main.zip
-    dest: /home/{{ APPUSER | default('roboshop') }}/cart  #With --strip-components=1, it removes that top folder and puts the files directly into
+    dest: /home/{{ APPUSER | default('roboshop') }}/cart/  #With --strip-components=1, it removes that top folder and puts the files directly into
     remote_src: yes
     extra_opts: [--strip-components=1]
     owner: "{{ APPUSER | default('roboshop') }}"
@@ -57,7 +56,6 @@
   ansible.builtin.template:
     src: systemd.service
     dest: /etc/systemd/system/cart.service
-    mode: '0644'
   notify:
     - daemon-reload
     - restart cart
