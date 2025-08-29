@@ -26,6 +26,7 @@
 - name: Crreate Application user
   ansible.builtin.user:
     user: "{{APPUSER}}"
+    state: present
 
 - name: unarchieve the folder
   ansible.builtin.unarchive:
@@ -50,3 +51,15 @@
 - name: Install project dependencies (npm install)
   community.general.npm:
     path: /home/roboshop/user/ 
+
+- name: Copying the systemd file
+  ansible.builtin.template:
+    src: systemd.service
+    dest: /etc/systemd/system/user.service
+
+- name: Start and enable the Catalogue
+  ansible.builtin.systemd:
+    name: user
+    state: started
+    enabled: yes
+    daemon_reload: yes
