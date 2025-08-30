@@ -66,15 +66,14 @@
       ansible.builtin.debug:
         msg: "The output is {{ mysql_temp_password }}"     
 
-    - name: Set MySQL root password (first time)
-      community.mysql.mysql_user:
-        name: root
-        host: localhost
-        password: "RoboShop@1"
-        login_user: root
-        login_password: "{{ mysql_temp_password }}"
-        connect_expired_password: true   # required when using temp password
-        state: present
+    - name: Reset MySQL root password (first-time)
+      ansible.builtin.command: >
+        mysql --connect-expired-password -uroot -p{{ mysql_temp_password }}
+        -e "ALTER USER 'root'@'localhost' IDENTIFIED BY 'RoboShop@1';"
+      args:
+        warn: false
+      register: reset_result
+      changed_when: "'ERROR' not in reset_result.stderr"
 
     - name: Ensure root password is RoboShop@1 (idempotent)
       community.mysql.mysql_user:
