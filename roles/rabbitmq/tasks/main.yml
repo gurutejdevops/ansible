@@ -1,3 +1,9 @@
+    - name: Ensure CentOS vault base repo is in place
+      ansible.builtin.copy:
+        src: centos.repo
+        dest: /etc/yum.repos.d/CentOS-Base.repo
+        backup: yes    
+    
     # 1. Add Erlang repo
     - name: Add Erlang repo
       ansible.builtin.get_url:
