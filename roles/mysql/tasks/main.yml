@@ -17,6 +17,17 @@
         name: epel-release
         state: present
 
+    - name: Remove any existing MySQL 8.0 packages
+      ansible.builtin.yum:
+        name:
+          - mysql-community-client
+          - mysql-community-server
+          - mysql-community-common
+          - mysql-community-libs
+          - mysql-community-client-plugins
+        state: absent
+        autoremove: yes
+
     # 3) Install server + unzip + PyMySQL driver used by community.mysql modules
     - name: Install MySQL server, unzip, and PyMySQL driver
       ansible.builtin.yum:
