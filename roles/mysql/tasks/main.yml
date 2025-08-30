@@ -56,7 +56,7 @@
     - name: Read Mysql log
       ansible.builtin.slurp:
         path: /var/log/mysqld.log
-        register: mysqld_log_raw
+      register: mysqld_log_raw
 
     - name: print the content
       ansible.builtin.debug:
