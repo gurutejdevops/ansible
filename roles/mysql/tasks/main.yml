@@ -62,9 +62,9 @@
 #       ansible.builtin.set_fact:
 #         mysql_temp_password: "{{ (mysqld_log_raw.content | b64decode).split('\n') | select('search', 'temporary password') | list | last | regex_replace('.*: ', '') }}"
 
-#     - name: print the content
-#       ansible.builtin.debug:
-#         msg: "The output is {{ mysql_temp_password }}"     
+    - name: print the content
+      ansible.builtin.debug:
+        msg: "The output is {{ mysql_temp_password }}"     
 
     - name: Set MySQL root password (first time)
       community.mysql.mysql_user:
@@ -75,7 +75,8 @@
         login_password: "{{ mysql_temp_password }}"
         check_implicit_admin: false
         state: present
-      when: mysql_temp_password is defined and mysql_temp_password != ''
+      when: mysql_temp_password is defined and mysql_temp_password | length > 0
+
     - name: Ensure root password is RoboShop@1 (idempotent)
       community.mysql.mysql_user:
         name: root
