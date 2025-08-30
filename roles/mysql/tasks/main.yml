@@ -73,9 +73,8 @@
         password: "RoboShop@1"
         login_user: root
         login_password: "{{ mysql_temp_password }}"
-        check_implicit_admin: false
+        connect_expired_password: true   # required when using temp password
         state: present
-      when: mysql_temp_password is defined and mysql_temp_password | length > 0
 
     - name: Ensure root password is RoboShop@1 (idempotent)
       community.mysql.mysql_user:
