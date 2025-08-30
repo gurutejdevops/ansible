@@ -57,17 +57,15 @@
       ansible.builtin.slurp:
         path: /var/log/mysqld.log
       register: mysqld_log_raw
+    
+    - name: Extract temporary root password
+      ansible.builtin.set_fact:
+        mysql_temp_password: "{{ (mysqld_log_raw.content | b64decode).split('\n') | select('search', 'temporary password') | list | last | regex_replace('.*: ', '') }}"
 
     - name: print the content
       ansible.builtin.debug:
-        msg: "The output is {{ mysqld_log_raw }}"
-    
-    - name: Extract temporary root password from log
-      ansible.builtin.set_fact:
-        mysql_temp_password: >-
-          {{ (mysqld_log_raw.content | b64decode)
-             | regex_search('temporary password.*: ([\\w\\W]*?)\\n', '\\1') | trim }}
-             
+        msg: "The output is {{ mysql_temp_password }}"     
+
     - name: Set MySQL root password to RoboShop@1
       community.mysql.mysql_user:
         name: root
