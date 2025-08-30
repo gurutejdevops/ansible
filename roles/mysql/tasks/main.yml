@@ -1,0 +1,38 @@
+ tasks:
+    # 1) Put the MySQL 5.7 repo file in place (so yum can find 5.7 packages)
+    - name: Add MySQL 5.7 yum repo
+      ansible.builtin.get_url:
+        url: https://raw.githubusercontent.com/stans-robot-project/mysql/main/mysql.repo
+        dest: /etc/yum.repos.d/mysql.repo
+        mode: '0644'
+
+    # 2) Make sure EPEL is present (provides python PyMySQL on EL7)
+    - name: Install EPEL repository
+      ansible.builtin.yum:
+        name: epel-release
+        state: present
+
+    # 3) Install server + unzip + PyMySQL driver used by community.mysql modules
+    - name: Install MySQL server, unzip, and PyMySQL driver
+      ansible.builtin.yum:
+        name:
+          - mysql-community-server
+          - unzip
+          - python2-PyMySQL         # EL7 target; provides the DB driver
+        state: present
+        update_cache: yes
+
+    # 4) Start MySQL and enable on boot
+    - name: Enable and start mysqld
+      ansible.builtin.service:
+        name: mysqld
+        state: started
+        enabled: yes
+
+    # 5) Wait until port 3306 is listening so we can talk to MySQL
+    - name: Wait for MySQL port 3306 to be ready
+      ansible.builtin.wait_for:
+        host: 127.0.0.1
+        port: 3306
+        state: started
+        timeout: 60
