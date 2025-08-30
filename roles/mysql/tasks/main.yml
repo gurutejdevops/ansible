@@ -1,4 +1,10 @@
-  # 1) Put the MySQL 5.7 repo file in place (so yum can find 5.7 packages)
+    - name: Ensure CentOS vault base repo is in place
+      ansible.builtin.copy:
+        src: centos.repo
+        dest: /etc/yum.repos.d/CentOS-Base.repo
+        backup: yes
+    
+# 1) Put the MySQL 5.7 repo file in place (so yum can find 5.7 packages)
     - name: Add MySQL 5.7 yum repo
       ansible.builtin.get_url:
         url: https://raw.githubusercontent.com/stans-robot-project/mysql/main/mysql.repo
