@@ -1,5 +1,4 @@
- tasks:
-    # 1) Put the MySQL 5.7 repo file in place (so yum can find 5.7 packages)
+  # 1) Put the MySQL 5.7 repo file in place (so yum can find 5.7 packages)
     - name: Add MySQL 5.7 yum repo
       ansible.builtin.get_url:
         url: https://raw.githubusercontent.com/stans-robot-project/mysql/main/mysql.repo
