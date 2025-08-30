@@ -1,0 +1,61 @@
+    # 1. Add Erlang repo
+    - name: Add Erlang repo
+      ansible.builtin.get_url:
+        url: https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh
+        dest: /tmp/erlang_repo.sh
+        mode: '0755'
+
+    - name: Setup Erlang repo
+      ansible.builtin.command: bash /tmp/erlang_repo.sh
+      args:
+        creates: /etc/yum.repos.d/rabbitmq_erlang.repo   # run only once
+
+    # 2. Add RabbitMQ repo
+    - name: Add RabbitMQ repo
+      ansible.builtin.get_url:
+        url: https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh
+        dest: /tmp/rabbitmq_repo.sh
+        mode: '0755'
+
+    - name: Setup RabbitMQ repo
+      ansible.builtin.command: bash /tmp/rabbitmq_repo.sh
+      args:
+        creates: /etc/yum.repos.d/rabbitmq_rabbitmq-server.repo
+
+    # 3. Install RabbitMQ
+    - name: Install RabbitMQ server
+      ansible.builtin.yum:
+        name: rabbitmq-server
+        state: present
+        update_cache: yes
+
+    # 4. Start & enable service
+    - name: Start and enable RabbitMQ service
+      ansible.builtin.service:
+        name: rabbitmq-server
+        state: started
+        enabled: yes
+
+    # 5. Create RabbitMQ user (roboshop/roboshop123)
+    - name: Add roboshop user
+      community.rabbitmq.rabbitmq_user:
+        user: roboshop
+        password: roboshop123
+        state: present
+
+    # 6. Set user tags (make admin)
+    - name: Set user tag to administrator
+      community.rabbitmq.rabbitmq_user:
+        user: roboshop
+        tags: administrator
+        state: present
+
+    # 7. Set permissions for user
+    - name: Set permissions for roboshop user
+      community.rabbitmq.rabbitmq_user:
+        user: roboshop
+        vhost: /
+        configure_priv: .*
+        read_priv: .*
+        write_priv: .*
+        state: present
