@@ -52,3 +52,36 @@
         port: 3306
         state: started
         timeout: 60
+
+    - name: Read Mysql log
+      ansible.builtin.slurp:
+        path: /var/log/mysqld.log
+        register: mysqld_log_raw
+
+    - name: print the content
+      ansible.builtin.debug:
+        msg: "The output is {{ mysqld_log_raw }}"
+    
+    - name: Extract temporary root password from log
+      ansible.builtin.set_fact:
+        mysql_temp_password: >-
+          {{ (mysqld_log_raw.content | b64decode) | regex_search('temporary password.*: ([\\w\\W]*?)\\n', '\\1') | trim }}
+
+    - name: Set MySQL root password to RoboShop@1
+      community.mysql.mysql_user:
+        name: root
+        host: localhost
+        password: "RoboShop@1"
+        login_user: root
+        login_password: "{{ mysql_temp_password }}"
+        check_implicit_admin: false
+        state: present
+
+    - name: Uninstall validate_password plugin (ignore if already absent)
+      community.mysql.mysql_query:
+        login_user: root
+        login_password: "RoboShop@1"
+        query: "UNINSTALL PLUGIN validate_password;"
+      ignore_errors: yes
+
+    
